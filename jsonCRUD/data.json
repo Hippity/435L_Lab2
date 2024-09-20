@@ -1,0 +1,90 @@
+{
+    "Student": [
+        {
+            "name": "Zein Zebib",
+            "age": 24,
+            "_email": "zein@gmail.com",
+            "student_id": "00001",
+            "registered_courses": [
+                "10001",
+                "10002"
+            ]
+        },
+        {
+            "name": "Mohamad Haidar",
+            "age": 23,
+            "_email": "haidar@gmail.com",
+            "student_id": "00002",
+            "registered_courses": [
+                "10002"
+            ]
+        },
+        {
+            "name": "James Franco",
+            "age": 21,
+            "_email": "james@gmail.com",
+            "student_id": "00003",
+            "registered_courses": [
+                "10003",
+                "10002"
+            ]
+        }
+    ],
+    "Instructor": [
+        {
+            "name": "Jihad Fahs",
+            "age": 50,
+            "_email": "jihad@gmail.com",
+            "instructor_id": "01001",
+            "assigned_courses": [
+                "10001"
+            ]
+        },
+        {
+            "name": "Ibrahim Faisal",
+            "age": 55,
+            "_email": "ibrahim@gmail.com",
+            "instructor_id": "01002",
+            "assigned_courses": [
+                "10002"
+            ]
+        },
+        {
+            "name": "Rana Sukkarieh",
+            "age": 45,
+            "_email": "rana@gmail.com",
+            "instructor_id": "01003",
+            "assigned_courses": [
+                "10003"
+            ]
+        }
+    ],
+    "Course": [
+        {
+            "course_id": "10001",
+            "course_name": "EECE435",
+            "instructor_id": "01001",
+            "enrolled_students": [
+                "00001"
+            ]
+        },
+        {
+            "course_id": "10002",
+            "course_name": "EECE442",
+            "instructor_id": "01002",
+            "enrolled_students": [
+                "00001",
+                "00002",
+                "00003"
+            ]
+        },
+        {
+            "course_id": "10003",
+            "course_name": "SOAN201",
+            "instructor_id": "01003",
+            "enrolled_students": [
+                "00003"
+            ]
+        }
+    ]
+}
