@@ -2,8 +2,13 @@ from jsonCRUD.jsonCRUD import load_json
 from classes.Course import *
 from databaseCRUD.databaseCRUD import *
 
-# data = load_json()
+"""
+Contains the local copy of the data that is shared throughout the app
+"""
 
+# Commented code that works for the JSON File
+
+# data = load_json()
 # courses = [Course.from_json(course) for course in data["Course"]]
 # instructors = [Instructor.from_json(instructor) for instructor in data["Instructor"]]
 # students = [Student.from_json(student) for student in data["Student"]]

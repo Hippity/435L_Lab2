@@ -7,37 +7,63 @@ from shared import courses, students
 
 class RegisterCourseTab(tk.Frame):
     def __init__(self, parent):
+        """
+        Initializes the RegisterCourseTab, setting up the attributes and initializing the UI.
+
+        Attributes:
+            course_dropdown (ttk.Combobox): Dropdown of the list of courses from shared.py
+            student_dropdown (ttk.Combobox): Dropdown of the list of students from shared.py
+            course_var (tk.StringVar): Selected course_id
+            student_var (tk.StringVar): Selected student_id
+        """
         super().__init__(parent)
-        self.course_var : tk.StringVar = tk.StringVar()
-        self.student_var : tk.StringVar = tk.StringVar()
         self.course_dropdown : ttk.Combobox = None
         self.student_dropdown : ttk.Combobox = None
+        self.course_var : tk.StringVar = tk.StringVar()
+        self.student_var : tk.StringVar = tk.StringVar()
 
         self.init_ui()
 
     def init_ui(self):
+        """
+        Initializes the UI of the RegisterCourseTab. Sets up the layout and adds all the components
+        """
+        # Register Course Title
         tk.Label(self, text="Register Course", font=("Arial", 28)).grid(row=0, column=0, columnspan=2, pady=10)
 
+        # Course Dropdown Label
         tk.Label(self, text="Select Course: ").grid(row=1, column=0, padx=0, pady=5)
+        # Course Dropdown
         self.course_dropdown = ttk.Combobox(self, values=[course.course_name for course in courses], state='readonly')
         self.course_dropdown.grid(row=1, column=1, padx=0, pady=5)
         self.course_dropdown.bind("<<ComboboxSelected>>", self.on_course_select)
 
+        # Student Dropdown Label
         tk.Label(self, text="Select Student: ").grid(row=2, column=0, padx=0, pady=5)
+        # Student Label
         self.student_dropdown = ttk.Combobox(self, values=[student.name for student in students], state='readonly')
         self.student_dropdown.grid(row=2, column=1, padx=0, pady=5)
         self.student_dropdown.bind("<<ComboboxSelected>>", self.on_student_select)
 
+        # Register Course Button
         register_button = tk.Button(self, text="Register Course", command=self.assign_student)
         register_button.grid(row=5, column=0, columnspan=2, pady=10)
 
+        # Unregister Course Button
         unregister_button = tk.Button(self, text="Unregister Course", command=self.unassign_student)
         unregister_button.grid(row=6, column=0, columnspan=2, pady=10)
 
+        # Refresh Data Button
         refresh_button = tk.Button(self, text="Refresh Data", command=self.update_ui)
         refresh_button.grid(row=7, column=0, columnspan=2, pady=10)
 
     def assign_student(self):
+        """
+        Registers a student to a course in the db and updates the local copy
+
+        Validates the registration process and displays success or error messages
+        using a messageBox.
+        """
         try:
             course_id = self.course_var.get()
             student_id = self.student_var.get()
@@ -80,6 +106,12 @@ class RegisterCourseTab(tk.Frame):
             messagebox.showwarning("Exception", str(e))
 
     def unassign_student(self):
+        """
+        Unregisters a student to a course in the db and updates the local copy
+
+        Validates the unregistration process and displays success or error messages
+        using a messageBox.
+        """
         try:
             course_id = self.course_var.get()
             student_id = self.student_var.get()
@@ -121,18 +153,27 @@ class RegisterCourseTab(tk.Frame):
         except Exception as e:
             messagebox.showwarning("Exception", str(e))
 
-    def update_ui(self):
-        self.course_dropdown['values'] = [course.course_name for course in courses]
-        self.student_dropdown['values'] = [student.name for student in students]
-
     def on_course_select(self, event):
+        """
+        Updates the course_var attribute with the selected course_id
+        """
         idx = self.course_dropdown.current()
         if idx != -1:
             selected = courses[idx]
             self.course_var.set(selected.course_id)
 
     def on_student_select(self, event):
+        """
+        Updates the student_var attribute with the selected student_id
+        """
         idx = self.student_dropdown.current()
         if idx != -1:
             selected = students[idx]
             self.student_var.set(selected.student_id)
+            
+    def update_ui(self):
+        """
+         Updates the UI for the course and student dropdown to reflect the new data
+        """
+        self.course_dropdown['values'] = [course.course_name for course in courses]
+        self.student_dropdown['values'] = [student.name for student in students]
