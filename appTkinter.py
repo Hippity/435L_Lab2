@@ -1,32 +1,48 @@
-from tkinterTabs.StudentTab import StudentTab
-from tkinterTabs.InstructorTab import InstructorTab
-from tkinterTabs.CourseTab import CourseTab
+import tkinter as tk
+from tkinter import ttk
+from tkinterTabs.StudentTab import AddStudentTab
+from tkinterTabs.InstructorTab import AddInstructorTab
+from tkinterTabs.CourseTab import AddCourseTab
 from tkinterTabs.AssignInstructor import AssignInstructorTab
 from tkinterTabs.RegisterCourse import RegisterCourseTab
 from tkinterTabs.ViewAll import ViewAllTab
-import tkinter as tk
-from tkinter import ttk
 
-root = tk.Tk() 
-root.title("School Management System")
-root.geometry("800x600")
+class SchoolManagementSystem:
+    def __init__(self, root):
+        """
+        Initializes the SchoolManagementSystem class, setting up the main window and adding all tabs.
 
-notebook = ttk.Notebook(root)
+        Args:
+            root (tk.Tk): The main application window.
+        """
+        self.root = root
+        self.root.title("School Management System")
+        self.root.geometry("800x600")
 
-add_student_tab = StudentTab(notebook)
-add_instructor_tab = InstructorTab(notebook)
-add_course_tab = CourseTab(notebook)
-assign_instructor_tab = AssignInstructorTab(notebook)
-register_course_tab = RegisterCourseTab(notebook)
-view_all_tab = ViewAllTab(notebook)
+        # Create a notebook to manage the tabs
+        self.notebook = ttk.Notebook(self.root)
 
-notebook.add(add_student_tab, text="Add Student")
-notebook.add(add_instructor_tab, text="Add Instructor")
-notebook.add(add_course_tab, text="Add Course")
-notebook.add(assign_instructor_tab, text="Assign Instructor")
-notebook.add(register_course_tab, text="Register Course")
-notebook.add(view_all_tab, text="View All")
+        # Initialize each tab and add it to the notebook with titles
+        self.notebook.add(AddStudentTab(self.notebook), text="Add Student")
+        self.notebook.add(AddInstructorTab(self.notebook), text="Add Instructor")
+        self.notebook.add(AddCourseTab(self.notebook), text="Add Course")
+        self.notebook.add(AssignInstructorTab(self.notebook), text="Assign Instructor")
+        self.notebook.add(RegisterCourseTab(self.notebook), text="Register Course")
+        self.notebook.add(ViewAllTab(self.notebook), text="View All")
 
-notebook.pack(expand=True, fill='both')
+        # Display the notebook in the main window
+        self.notebook.pack(expand=True, fill='both')
 
-root.mainloop()
+    def run(self):
+        """
+        Starts the main event loop for the Tkinter application.
+        """
+        self.root.mainloop()
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    
+    app = SchoolManagementSystem(root)
+    
+    app.run()

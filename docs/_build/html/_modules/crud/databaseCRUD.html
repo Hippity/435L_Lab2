@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>crud.databaseCRUD &mdash; School Management System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            School Management System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">EECE435L Lab Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">School Management System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">crud.databaseCRUD</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for crud.databaseCRUD</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">from</span> <span class="nn">classes.Course</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">database_path</span> <span class="o">=</span> <span class="s1">&#39;./database.db&#39;</span>
+
+<div class="viewcode-block" id="connect_db">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.connect_db">[docs]</a>
+<span class="k">def</span> <span class="nf">connect_db</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Establish a connection to the SQLite database.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        sqlite3.Connection: A connection object to interact with the database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_path</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_courses">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.fetch_courses">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_courses</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve all courses from the database, including their enrolled students as a string e.g(Name1,Name2,Name3)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: A list of tuples representing the courses and their enrolled students.</span>
+<span class="sd">              Each tuple contains (course_id, course_name, instructor_id, enrolled_students)</span>
+<span class="sd">              Returns an empty list if an error occurs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT c.course_id, c.course_name, c.instructor_id, </span>
+<span class="s2">                GROUP_CONCAT(e.student_id) AS enrolled_students</span>
+<span class="s2">            FROM Course c</span>
+<span class="s2">            LEFT JOIN Enrollment e ON c.course_id = e.course_id</span>
+<span class="s2">            GROUP BY c.course_id</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">courses</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">courses</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="add_course">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.add_course">[docs]</a>
+<span class="k">def</span> <span class="nf">add_course</span><span class="p">(</span><span class="n">course</span><span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a new course to the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        course (Course): An instance of the Course class to be added.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the course was successfully added, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">course</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span>
+
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO Course (course_id, course_name) VALUES (?, ?)&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Added course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2"> to table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="edit_course">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.edit_course">[docs]</a>
+<span class="k">def</span> <span class="nf">edit_course</span><span class="p">(</span><span class="n">course</span><span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Edit an existing course in the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        course (Course): An instance of the Course class with updated data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the course was successfully edited, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">course</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span>
+
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE Course SET course_name = ? WHERE course_id = ?&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="p">,</span> <span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Edited course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2"> in table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="delete_course">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.delete_course">[docs]</a>
+<span class="k">def</span> <span class="nf">delete_course</span><span class="p">(</span><span class="n">course</span><span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete an existing course from the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        course (Course): An instance of the Course class to be deleted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the course was successfully deleted, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Enrollment WHERE course_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">,))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Course WHERE course_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">,))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deleted course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2"> from table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="fetch_students">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.fetch_students">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_students</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve all students from the database, including their registered courses as a string e.g(Course1,Course2,Course3)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: A list of tuples representing the students and their registered courses.</span>
+<span class="sd">              Each tuple contains (student_id, name, age, email, registered_courses).</span>
+<span class="sd">              Returns an empty list if an error occurs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT s.student_id, s.name, s.age, s.email, </span>
+<span class="s2">                GROUP_CONCAT(e.course_id) AS registered_courses</span>
+<span class="s2">            FROM Student s</span>
+<span class="s2">            LEFT JOIN Enrollment e ON s.student_id = e.student_id</span>
+<span class="s2">            GROUP BY s.student_id</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">students</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">students</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="add_student">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.add_student">[docs]</a>
+<span class="k">def</span> <span class="nf">add_student</span><span class="p">(</span><span class="n">student</span><span class="p">:</span> <span class="n">Student</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a new student to the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        student (Student): An instance of the Student class to be added.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the student was successfully added, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">student</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span>
+
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO Student (student_id, name, age, email) VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">student_id</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">_email</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Added student </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="edit_student">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.edit_student">[docs]</a>
+<span class="k">def</span> <span class="nf">edit_student</span><span class="p">(</span><span class="n">student</span><span class="p">:</span> <span class="n">Student</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Edit an existing student in the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        student (Student): An instance of the Student class with updated data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the student was successfully edited, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">student</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span>
+
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE Student SET name = ?, age = ?, email = ? WHERE student_id = ?&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">_email</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">student_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Edited student </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> in table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="delete_student">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.delete_student">[docs]</a>
+<span class="k">def</span> <span class="nf">delete_student</span><span class="p">(</span><span class="n">student</span><span class="p">:</span> <span class="n">Student</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete an existing student from the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        student (Student): An instance of the Student class to be deleted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the student was successfully deleted, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Enrollment WHERE student_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">student_id</span><span class="p">,))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Student WHERE student_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">student</span><span class="o">.</span><span class="n">student_id</span><span class="p">,))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deleted student </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> from table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="register_course">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.register_course">[docs]</a>
+<span class="k">def</span> <span class="nf">register_course</span><span class="p">(</span><span class="n">student</span><span class="p">:</span> <span class="n">Student</span><span class="p">,</span> <span class="n">course</span><span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Register a student to a course in the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        student (Student): An instance of the Student class.</span>
+<span class="sd">        course (Course): An instance of the Course class.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the student was successfully registered, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO Enrollment (course_id, student_id) VALUES (?, ?)&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">student_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Added student </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="unregister_course">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.unregister_course">[docs]</a>
+<span class="k">def</span> <span class="nf">unregister_course</span><span class="p">(</span><span class="n">student</span><span class="p">:</span> <span class="n">Student</span><span class="p">,</span> <span class="n">course</span> <span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unregister a student to a course in the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        student (Student): An instance of the Student class.</span>
+<span class="sd">        course (Course): An instance of the Course class.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the student was successfully unregistered, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Enrollment WHERE course_id = ? AND student_id = ?&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">student_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Removed student </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> from course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="fetch_instructors">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.fetch_instructors">[docs]</a>
+<span class="k">def</span> <span class="nf">fetch_instructors</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve all instructors from the database, including their assigned courses as a string e.g(Course1,Course2,Course3)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: A list of tuples representing the intructors and their assigned courses.</span>
+<span class="sd">              Each tuple contains (instructor_id, name, age, email, assigned_courses).</span>
+<span class="sd">              Returns an empty list if an error occurs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT i.instructor_id, i.name, i.age, i.email, </span>
+<span class="s2">                GROUP_CONCAT(c.course_id) AS assigned_courses</span>
+<span class="s2">            FROM Instructor i</span>
+<span class="s2">            LEFT JOIN Course c ON i.instructor_id = c.instructor_id</span>
+<span class="s2">            GROUP BY i.instructor_id</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">instructors</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">instructors</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="add_instructor">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.add_instructor">[docs]</a>
+<span class="k">def</span> <span class="nf">add_instructor</span><span class="p">(</span><span class="n">instructor</span><span class="p">:</span> <span class="n">Instructor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a new instructor to the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        instructor (Instructor): An instance of the Instructor class to be added.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the instructor was successfully added, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">instructor</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span>
+
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO Instructor (instructor_id, name, age, email) VALUES (?, ?, ?, ?)&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">_email</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Added instructor </span><span class="si">{</span><span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="edit_instructor">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.edit_instructor">[docs]</a>
+<span class="k">def</span> <span class="nf">edit_instructor</span><span class="p">(</span><span class="n">instructor</span><span class="p">:</span> <span class="n">Instructor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Edit an existing instructor in the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        instructor (Instructor): An instance of the Instructor class with updated data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the instructor was successfully edited, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">instructor</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span>
+
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE Instructor SET name = ?, age = ?, email = ? WHERE instructor_id = ?&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">_email</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Edited instructor </span><span class="si">{</span><span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> in table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="delete_instructor">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.delete_instructor">[docs]</a>
+<span class="k">def</span> <span class="nf">delete_instructor</span><span class="p">(</span><span class="n">instructor</span><span class="p">:</span> <span class="n">Instructor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete an existing instructor from the database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        instructor (Instructor): An instance of the Instructor class to be deleted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the instructor was successfully deleted, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE Course SET instructor_id = NULL WHERE instructor_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">,))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Instructor WHERE instructor_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">,))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deleted instructor </span><span class="si">{</span><span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> from table&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+ 
+<div class="viewcode-block" id="assign_instructor">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.assign_instructor">[docs]</a>
+<span class="k">def</span> <span class="nf">assign_instructor</span><span class="p">(</span><span class="n">instructor</span> <span class="p">:</span> <span class="n">Instructor</span><span class="p">,</span> <span class="n">course</span> <span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assigns an instructor to a course in the database. Changes the intructor_id field of the course</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        instructor (Instructor): An instance of the Instructor class.</span>
+<span class="sd">        course (Course): An instance of the Course class.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the instructor was successfully assigned, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE Course SET instructor_id = ? WHERE course_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">,</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Added instructor </span><span class="si">{</span><span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="unassign_instructor">
+<a class="viewcode-back" href="../../crud.html#crud.databaseCRUD.unassign_instructor">[docs]</a>
+<span class="k">def</span> <span class="nf">unassign_instructor</span><span class="p">(</span><span class="n">instructor</span> <span class="p">:</span> <span class="n">Instructor</span><span class="p">,</span> <span class="n">course</span> <span class="p">:</span> <span class="n">Course</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unassigns an instructor to a course in the database. Changes the intructor_id field of the course</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        instructor (Instructor): An instance of the Instructor class.</span>
+<span class="sd">        course (Course): An instance of the Course class.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the instructor was successfully unassigned, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conn</span>  <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">()</span>
+    <span class="n">cursor</span> <span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE Course SET instructor_id = NULL WHERE course_id = ? AND instructor_id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">course_id</span><span class="p">,</span><span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Removed instructor </span><span class="si">{</span><span class="n">instructor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> from course </span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">course_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Zein Zebib.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

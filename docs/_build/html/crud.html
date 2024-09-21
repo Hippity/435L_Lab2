@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create, Read, Update, Delete Package &mdash; School Management System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PYQT App" href="appPYQT.html" />
+    <link rel="prev" title="Classes Package" href="classes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            School Management System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EECE435L Lab Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes Package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Create, Read, Update, Delete Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-crud.jsonCRUD">JSON CRUD Actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#crud.jsonCRUD.add_entry_json"><code class="docutils literal notranslate"><span class="pre">add_entry_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.jsonCRUD.delete_entry_json"><code class="docutils literal notranslate"><span class="pre">delete_entry_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.jsonCRUD.edit_entry_json"><code class="docutils literal notranslate"><span class="pre">edit_entry_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.jsonCRUD.load_json"><code class="docutils literal notranslate"><span class="pre">load_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.jsonCRUD.save_data"><code class="docutils literal notranslate"><span class="pre">save_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-crud.databaseCRUD">Database CRUD Actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.add_course"><code class="docutils literal notranslate"><span class="pre">add_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.add_instructor"><code class="docutils literal notranslate"><span class="pre">add_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.add_student"><code class="docutils literal notranslate"><span class="pre">add_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.assign_instructor"><code class="docutils literal notranslate"><span class="pre">assign_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.connect_db"><code class="docutils literal notranslate"><span class="pre">connect_db()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.delete_course"><code class="docutils literal notranslate"><span class="pre">delete_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.delete_instructor"><code class="docutils literal notranslate"><span class="pre">delete_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.delete_student"><code class="docutils literal notranslate"><span class="pre">delete_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.edit_course"><code class="docutils literal notranslate"><span class="pre">edit_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.edit_instructor"><code class="docutils literal notranslate"><span class="pre">edit_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.edit_student"><code class="docutils literal notranslate"><span class="pre">edit_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.fetch_courses"><code class="docutils literal notranslate"><span class="pre">fetch_courses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.fetch_instructors"><code class="docutils literal notranslate"><span class="pre">fetch_instructors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.fetch_students"><code class="docutils literal notranslate"><span class="pre">fetch_students()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.register_course"><code class="docutils literal notranslate"><span class="pre">register_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.unassign_instructor"><code class="docutils literal notranslate"><span class="pre">unassign_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud.databaseCRUD.unregister_course"><code class="docutils literal notranslate"><span class="pre">unregister_course()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="appPYQT.html">PYQT App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyqtTabs.html">PYQT App Tabs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appTkinter.html">Tkinter App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinterTabs.html">Tkinter App Tabs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shared.html">Shared</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">School Management System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">EECE435L Lab Documentation</a></li>
+      <li class="breadcrumb-item active">Create, Read, Update, Delete Package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/crud.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-read-update-delete-package">
+<h1>Create, Read, Update, Delete Package<a class="headerlink" href="#create-read-update-delete-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-crud.jsonCRUD">
+<span id="json-crud-actions"></span><h2>JSON CRUD Actions<a class="headerlink" href="#module-crud.jsonCRUD" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.jsonCRUD.add_entry_json">
+<span class="sig-prename descclassname"><span class="pre">crud.jsonCRUD.</span></span><span class="sig-name descname"><span class="pre">add_entry_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/jsonCRUD.html#add_entry_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.jsonCRUD.add_entry_json" title="Link to this definition"></a></dt>
+<dd><p>Add a new entry to a specified table in the JSON data.</p>
+<p>Validates the entry and adds it to the specified table in the JSON data if it doesn’t already exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_type</strong> (<em>str</em>) – The type of table to which the entry should be added, ‘Course’, ‘Student’, or ‘Instructor’</p></li>
+<li><p><strong>entry</strong> (<em>object</em>) – An object representing the entry to be added. Entry can be Course, Student, Instructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the entry was successfully added, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.jsonCRUD.delete_entry_json">
+<span class="sig-prename descclassname"><span class="pre">crud.jsonCRUD.</span></span><span class="sig-name descname"><span class="pre">delete_entry_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/jsonCRUD.html#delete_entry_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.jsonCRUD.delete_entry_json" title="Link to this definition"></a></dt>
+<dd><p>Delete an existing entry from a specified table in the JSON data.</p>
+<p>Finds and removes the entry from the specified table based on the entry’s ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_type</strong> (<em>str</em>) – The type of table from which the entry should be deleted, ‘Course’, ‘Student’, or ‘Instructor’</p></li>
+<li><p><strong>entry</strong> (<em>object</em>) – An object representing the entry to be deleted. Entry can be Course, Student, Instructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the entry was successfully deleted, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.jsonCRUD.edit_entry_json">
+<span class="sig-prename descclassname"><span class="pre">crud.jsonCRUD.</span></span><span class="sig-name descname"><span class="pre">edit_entry_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/jsonCRUD.html#edit_entry_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.jsonCRUD.edit_entry_json" title="Link to this definition"></a></dt>
+<dd><p>Edit an existing entry in a specified table in the JSON data.</p>
+<p>Validates the entry and updates the existing entry in the specified table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_type</strong> (<em>str</em>) – The type of table in which the entry should be edited, ‘Course’, ‘Student’, or ‘Instructor’</p></li>
+<li><p><strong>entry</strong> (<em>object</em>) – An object representing the entry to be edited. Entry can be Course, Student, Instructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the entry was successfully edited, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.jsonCRUD.load_json">
+<span class="sig-prename descclassname"><span class="pre">crud.jsonCRUD.</span></span><span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/jsonCRUD.html#load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.jsonCRUD.load_json" title="Link to this definition"></a></dt>
+<dd><p>Load data from a JSON file.</p>
+<p>Reads the JSON data from the file specified by <cite>file_path</cite> and returns it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The data loaded from the JSON file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.jsonCRUD.save_data">
+<span class="sig-prename descclassname"><span class="pre">crud.jsonCRUD.</span></span><span class="sig-name descname"><span class="pre">save_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/jsonCRUD.html#save_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.jsonCRUD.save_data" title="Link to this definition"></a></dt>
+<dd><p>Save data to a JSON file.</p>
+<p>Writes the given data to the JSON file specified by <cite>file_path</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_data</strong> (<em>dict</em>) – The data to be saved into the JSON file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-crud.databaseCRUD">
+<span id="database-crud-actions"></span><h2>Database CRUD Actions<a class="headerlink" href="#module-crud.databaseCRUD" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.add_course">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">add_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#add_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.add_course" title="Link to this definition"></a></dt>
+<dd><p>Add a new course to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the course was successfully added, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.add_instructor">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">add_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><span class="pre">Instructor</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#add_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.add_instructor" title="Link to this definition"></a></dt>
+<dd><p>Add a new instructor to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor</strong> (<a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><em>Instructor</em></a>) – An instance of the Instructor class to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the instructor was successfully added, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.add_student">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">add_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><span class="pre">Student</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#add_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.add_student" title="Link to this definition"></a></dt>
+<dd><p>Add a new student to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student</strong> (<a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><em>Student</em></a>) – An instance of the Student class to be added.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the student was successfully added, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.assign_instructor">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">assign_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><span class="pre">Instructor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#assign_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.assign_instructor" title="Link to this definition"></a></dt>
+<dd><p>Assigns an instructor to a course in the database. Changes the intructor_id field of the course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instructor</strong> (<a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><em>Instructor</em></a>) – An instance of the Instructor class.</p></li>
+<li><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the instructor was successfully assigned, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.connect_db">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">connect_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#connect_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.connect_db" title="Link to this definition"></a></dt>
+<dd><p>Establish a connection to the SQLite database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A connection object to interact with the database.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>sqlite3.Connection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.delete_course">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">delete_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#delete_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.delete_course" title="Link to this definition"></a></dt>
+<dd><p>Delete an existing course from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the course was successfully deleted, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.delete_instructor">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">delete_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><span class="pre">Instructor</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#delete_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.delete_instructor" title="Link to this definition"></a></dt>
+<dd><p>Delete an existing instructor from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor</strong> (<a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><em>Instructor</em></a>) – An instance of the Instructor class to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the instructor was successfully deleted, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.delete_student">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">delete_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><span class="pre">Student</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#delete_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.delete_student" title="Link to this definition"></a></dt>
+<dd><p>Delete an existing student from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student</strong> (<a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><em>Student</em></a>) – An instance of the Student class to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the student was successfully deleted, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.edit_course">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">edit_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#edit_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.edit_course" title="Link to this definition"></a></dt>
+<dd><p>Edit an existing course in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class with updated data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the course was successfully edited, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.edit_instructor">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">edit_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><span class="pre">Instructor</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#edit_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.edit_instructor" title="Link to this definition"></a></dt>
+<dd><p>Edit an existing instructor in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instructor</strong> (<a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><em>Instructor</em></a>) – An instance of the Instructor class with updated data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the instructor was successfully edited, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.edit_student">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">edit_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><span class="pre">Student</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#edit_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.edit_student" title="Link to this definition"></a></dt>
+<dd><p>Edit an existing student in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>student</strong> (<a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><em>Student</em></a>) – An instance of the Student class with updated data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the student was successfully edited, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.fetch_courses">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">fetch_courses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#fetch_courses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.fetch_courses" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all courses from the database, including their enrolled students as a string e.g(Name1,Name2,Name3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A list of tuples representing the courses and their enrolled students.</dt><dd><p>Each tuple contains (course_id, course_name, instructor_id, enrolled_students)
+Returns an empty list if an error occurs.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.fetch_instructors">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">fetch_instructors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#fetch_instructors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.fetch_instructors" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all instructors from the database, including their assigned courses as a string e.g(Course1,Course2,Course3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A list of tuples representing the intructors and their assigned courses.</dt><dd><p>Each tuple contains (instructor_id, name, age, email, assigned_courses).
+Returns an empty list if an error occurs.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.fetch_students">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">fetch_students</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#fetch_students"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.fetch_students" title="Link to this definition"></a></dt>
+<dd><p>Retrieve all students from the database, including their registered courses as a string e.g(Course1,Course2,Course3)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A list of tuples representing the students and their registered courses.</dt><dd><p>Each tuple contains (student_id, name, age, email, registered_courses).
+Returns an empty list if an error occurs.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.register_course">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">register_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><span class="pre">Student</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#register_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.register_course" title="Link to this definition"></a></dt>
+<dd><p>Register a student to a course in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>student</strong> (<a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><em>Student</em></a>) – An instance of the Student class.</p></li>
+<li><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the student was successfully registered, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.unassign_instructor">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">unassign_instructor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instructor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><span class="pre">Instructor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#unassign_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.unassign_instructor" title="Link to this definition"></a></dt>
+<dd><p>Unassigns an instructor to a course in the database. Changes the intructor_id field of the course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instructor</strong> (<a class="reference internal" href="classes.html#classes.Instructor.Instructor" title="classes.Instructor.Instructor"><em>Instructor</em></a>) – An instance of the Instructor class.</p></li>
+<li><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the instructor was successfully unassigned, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crud.databaseCRUD.unregister_course">
+<span class="sig-prename descclassname"><span class="pre">crud.databaseCRUD.</span></span><span class="sig-name descname"><span class="pre">unregister_course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">student</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><span class="pre">Student</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">course</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><span class="pre">Course</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/crud/databaseCRUD.html#unregister_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crud.databaseCRUD.unregister_course" title="Link to this definition"></a></dt>
+<dd><p>Unregister a student to a course in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>student</strong> (<a class="reference internal" href="classes.html#classes.Student.Student" title="classes.Student.Student"><em>Student</em></a>) – An instance of the Student class.</p></li>
+<li><p><strong>course</strong> (<a class="reference internal" href="classes.html#classes.Course.Course" title="classes.Course.Course"><em>Course</em></a>) – An instance of the Course class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>bool: True if the student was successfully unregistered, False otherwise.</p></li>
+<li><p>list: A list of messages indicating success or errors encountered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classes.html" class="btn btn-neutral float-left" title="Classes Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="appPYQT.html" class="btn btn-neutral float-right" title="PYQT App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Zein Zebib.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

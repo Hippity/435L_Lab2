@@ -1,12 +1,26 @@
 import sqlite3
 from classes.Course import *
 
-database_path = './databaseCRUD/database.db'
+database_path = './database.db'
 
 def connect_db():
+    """
+    Establish a connection to the SQLite database.
+
+    Returns:
+        sqlite3.Connection: A connection object to interact with the database.
+    """
     return sqlite3.connect(database_path)
 
 def fetch_courses():
+    """
+    Retrieve all courses from the database, including their enrolled students as a string e.g(Name1,Name2,Name3)
+
+    Returns:
+        list: A list of tuples representing the courses and their enrolled students.
+              Each tuple contains (course_id, course_name, instructor_id, enrolled_students)
+              Returns an empty list if an error occurs.
+    """
     conn : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -25,6 +39,17 @@ def fetch_courses():
         conn.close()
 
 def add_course(course: Course):
+    """
+    Add a new course to the database.
+
+    Args:
+        course (Course): An instance of the Course class to be added.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the course was successfully added, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     valid, errors = course.validate()
     if not valid:
         return False, errors
@@ -42,6 +67,17 @@ def add_course(course: Course):
         conn.close()
 
 def edit_course(course: Course):
+    """
+    Edit an existing course in the database.
+
+    Args:
+        course (Course): An instance of the Course class with updated data.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the course was successfully edited, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     valid, errors = course.validate()
     if not valid:
         return False, errors
@@ -60,6 +96,17 @@ def edit_course(course: Course):
         conn.close()
 
 def delete_course(course: Course):
+    """
+    Delete an existing course from the database.
+
+    Args:
+        course (Course): An instance of the Course class to be deleted.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the course was successfully deleted, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn: sqlite3.Connection = connect_db()
     cursor: sqlite3.Cursor = conn.cursor()
     try:
@@ -75,6 +122,14 @@ def delete_course(course: Course):
         conn.close()
 
 def fetch_students():
+    """
+    Retrieve all students from the database, including their registered courses as a string e.g(Course1,Course2,Course3)
+
+    Returns:
+        list: A list of tuples representing the students and their registered courses.
+              Each tuple contains (student_id, name, age, email, registered_courses).
+              Returns an empty list if an error occurs.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -93,6 +148,17 @@ def fetch_students():
         conn.close()
 
 def add_student(student: Student):
+    """
+    Add a new student to the database.
+
+    Args:
+        student (Student): An instance of the Student class to be added.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the student was successfully added, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     valid, errors = student.validate()
     if not valid:
         return False, errors
@@ -110,6 +176,17 @@ def add_student(student: Student):
         conn.close()
 
 def edit_student(student: Student):
+    """
+    Edit an existing student in the database.
+
+    Args:
+        student (Student): An instance of the Student class with updated data.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the student was successfully edited, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     valid, errors = student.validate()
     if not valid:
         return False, errors
@@ -128,6 +205,17 @@ def edit_student(student: Student):
         conn.close()
 
 def delete_student(student: Student):
+    """
+    Delete an existing student from the database.
+
+    Args:
+        student (Student): An instance of the Student class to be deleted.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the student was successfully deleted, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -143,6 +231,18 @@ def delete_student(student: Student):
         conn.close()
 
 def register_course(student: Student, course: Course):
+    """
+    Register a student to a course in the database.
+
+    Args:
+        student (Student): An instance of the Student class.
+        course (Course): An instance of the Course class.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the student was successfully registered, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -157,6 +257,18 @@ def register_course(student: Student, course: Course):
         conn.close()
 
 def unregister_course(student: Student, course : Course):
+    """
+    Unregister a student to a course in the database.
+
+    Args:
+        student (Student): An instance of the Student class.
+        course (Course): An instance of the Course class.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the student was successfully unregistered, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -171,6 +283,14 @@ def unregister_course(student: Student, course : Course):
         conn.close()
 
 def fetch_instructors():
+    """
+    Retrieve all instructors from the database, including their assigned courses as a string e.g(Course1,Course2,Course3)
+
+    Returns:
+        list: A list of tuples representing the intructors and their assigned courses.
+              Each tuple contains (instructor_id, name, age, email, assigned_courses).
+              Returns an empty list if an error occurs.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -189,6 +309,17 @@ def fetch_instructors():
         conn.close()
 
 def add_instructor(instructor: Instructor):
+    """
+    Add a new instructor to the database.
+
+    Args:
+        instructor (Instructor): An instance of the Instructor class to be added.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the instructor was successfully added, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     valid, errors = instructor.validate()
     if not valid:
         return False, errors
@@ -207,6 +338,17 @@ def add_instructor(instructor: Instructor):
         conn.close()
 
 def edit_instructor(instructor: Instructor):
+    """
+    Edit an existing instructor in the database.
+
+    Args:
+        instructor (Instructor): An instance of the Instructor class with updated data.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the instructor was successfully edited, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     valid, errors = instructor.validate()
     if not valid:
         return False, errors
@@ -225,6 +367,17 @@ def edit_instructor(instructor: Instructor):
         conn.close()
 
 def delete_instructor(instructor: Instructor):
+    """
+    Delete an existing instructor from the database.
+
+    Args:
+        instructor (Instructor): An instance of the Instructor class to be deleted.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the instructor was successfully deleted, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -240,6 +393,18 @@ def delete_instructor(instructor: Instructor):
         conn.close()
  
 def assign_instructor(instructor : Instructor, course : Course):
+    """
+    Assigns an instructor to a course in the database. Changes the intructor_id field of the course
+
+    Args:
+        instructor (Instructor): An instance of the Instructor class.
+        course (Course): An instance of the Course class.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the instructor was successfully assigned, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:
@@ -253,6 +418,18 @@ def assign_instructor(instructor : Instructor, course : Course):
         conn.close()
 
 def unassign_instructor(instructor : Instructor, course : Course):
+    """
+    Unassigns an instructor to a course in the database. Changes the intructor_id field of the course
+
+    Args:
+        instructor (Instructor): An instance of the Instructor class.
+        course (Course): An instance of the Course class.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if the instructor was successfully unassigned, False otherwise.
+            - list: A list of messages indicating success or errors encountered.
+    """
     conn  : sqlite3.Connection = connect_db()
     cursor : sqlite3.Cursor = conn.cursor()
     try:

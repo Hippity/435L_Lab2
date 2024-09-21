@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>crud.jsonCRUD &mdash; School Management System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            School Management System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">EECE435L Lab Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">School Management System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">crud.jsonCRUD</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for crud.jsonCRUD</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;./data.json&quot;</span>
+
+<div class="viewcode-block" id="load_json">
+<a class="viewcode-back" href="../../crud.html#crud.jsonCRUD.load_json">[docs]</a>
+<span class="k">def</span> <span class="nf">load_json</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load data from a JSON file.</span>
+
+<span class="sd">    Reads the JSON data from the file specified by `file_path` and returns it.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: The data loaded from the JSON file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="save_data">
+<a class="viewcode-back" href="../../crud.html#crud.jsonCRUD.save_data">[docs]</a>
+<span class="k">def</span> <span class="nf">save_data</span><span class="p">(</span><span class="n">new_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save data to a JSON file.</span>
+
+<span class="sd">    Writes the given data to the JSON file specified by `file_path`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        new_data (dict): The data to be saved into the JSON file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_entry_json">
+<a class="viewcode-back" href="../../crud.html#crud.jsonCRUD.add_entry_json">[docs]</a>
+<span class="k">def</span> <span class="nf">add_entry_json</span><span class="p">(</span><span class="n">table_type</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a new entry to a specified table in the JSON data.</span>
+
+<span class="sd">    Validates the entry and adds it to the specified table in the JSON data if it doesn&#39;t already exist.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table_type (str): The type of table to which the entry should be added, &#39;Course&#39;, &#39;Student&#39;, or &#39;Instructor&#39;</span>
+<span class="sd">        entry (object): An object representing the entry to be added. Entry can be Course, Student, Instructor</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the entry was successfully added, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">table_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,[</span><span class="s2">&quot;Table does not exist&quot;</span><span class="p">]</span>
+    
+    <span class="n">valid</span> <span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span>
+    
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;instructor_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">table_type</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;student_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;course_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instructor_id&#39;</span><span class="p">)</span><span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="nb">id</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">table_type</span><span class="si">}</span><span class="s1"> already exists in table&#39;</span><span class="p">]</span>
+
+    <span class="n">data</span><span class="p">[</span><span class="n">table_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="n">save_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Added </span><span class="si">{</span><span class="n">table_type</span><span class="si">}</span><span class="s2"> to table&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="edit_entry_json">
+<a class="viewcode-back" href="../../crud.html#crud.jsonCRUD.edit_entry_json">[docs]</a>
+<span class="k">def</span> <span class="nf">edit_entry_json</span><span class="p">(</span><span class="n">table_type</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Edit an existing entry in a specified table in the JSON data.</span>
+
+<span class="sd">    Validates the entry and updates the existing entry in the specified table.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table_type (str): The type of table in which the entry should be edited, &#39;Course&#39;, &#39;Student&#39;, or &#39;Instructor&#39;</span>
+<span class="sd">        entry (object): An object representing the entry to be edited. Entry can be Course, Student, Instructor</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the entry was successfully edited, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">table_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,[</span><span class="s2">&quot;Table does not exist&quot;</span><span class="p">]</span>
+    
+    <span class="n">valid</span> <span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">valid</span><span class="p">,</span> <span class="n">errors</span>
+    
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;instructor_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="n">not_in_table</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">table_type</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;student_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;course_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instructor_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">table_type</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="vm">__dict__</span>
+                <span class="n">not_in_table</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+    
+    <span class="k">if</span> <span class="n">not_in_table</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">table_type</span><span class="si">}</span><span class="s1"> not in table&#39;</span><span class="p">]</span>
+
+    <span class="n">save_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Editted </span><span class="si">{</span><span class="n">table_type</span><span class="si">}</span><span class="s2"> in table&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="delete_entry_json">
+<a class="viewcode-back" href="../../crud.html#crud.jsonCRUD.delete_entry_json">[docs]</a>
+<span class="k">def</span> <span class="nf">delete_entry_json</span><span class="p">(</span><span class="n">table_type</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delete an existing entry from a specified table in the JSON data.</span>
+
+<span class="sd">    Finds and removes the entry from the specified table based on the entry&#39;s ID.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table_type (str): The type of table from which the entry should be deleted, &#39;Course&#39;, &#39;Student&#39;, or &#39;Instructor&#39;</span>
+<span class="sd">        entry (object): An object representing the entry to be deleted. Entry can be Course, Student, Instructor</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing:</span>
+<span class="sd">            - bool: True if the entry was successfully deleted, False otherwise.</span>
+<span class="sd">            - list: A list of messages indicating success or errors encountered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">table_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,[</span><span class="s2">&quot;Table does not exist&quot;</span><span class="p">]</span>
+    
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;course_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;student_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="s2">&quot;instructor_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">not_in_table</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">table_type</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;student_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;course_id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instructor_id&#39;</span><span class="p">)</span> <span class="o">==</span><span class="nb">id</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">table_type</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                <span class="n">not_in_table</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">not_in_table</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">table_type</span><span class="si">}</span><span class="s1"> not in table&#39;</span><span class="p">]</span>
+
+    <span class="n">save_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Deleted </span><span class="si">{</span><span class="n">table_type</span><span class="si">}</span><span class="s2"> from table&quot;</span><span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Zein Zebib.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
