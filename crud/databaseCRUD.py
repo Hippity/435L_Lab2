@@ -1,7 +1,7 @@
 import sqlite3
 from classes.Course import *
 
-database_path = './databaseCRUD/database.db'
+database_path = './database.db'
 
 def connect_db():
     """

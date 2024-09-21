@@ -1,3 +1,4 @@
+import sys
 from PyQt5.QtWidgets import QApplication, QTabWidget, QMainWindow
 from pyqtTabs.InstructorTab import AddInstructorTab
 from pyqtTabs.StudentTab import AddStudentTab
@@ -5,8 +6,6 @@ from pyqtTabs.ViewAll import ViewAllTab
 from pyqtTabs.CourseTab import AddCourseTab
 from pyqtTabs.AssignInstructor import AssignInstructorTab
 from pyqtTabs.RegisterCourse import RegisterCourseTab
-
-import sys
 
 class SchoolManagementSystem(QMainWindow):
     def __init__(self):

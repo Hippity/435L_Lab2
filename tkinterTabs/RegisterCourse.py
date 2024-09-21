@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from classes.Course import *
-from jsonCRUD.jsonCRUD import *
-from databaseCRUD.databaseCRUD import *
+from crud.jsonCRUD import *
+from crud.databaseCRUD import *
 from shared import courses, students
 
 class RegisterCourseTab(tk.Frame):

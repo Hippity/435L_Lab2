@@ -1,6 +1,6 @@
 import json
 
-file_path = "./jsonCRUD/data.json"
+file_path = "./data.json"
 
 def load_json():
     """

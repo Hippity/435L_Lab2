@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox, QGridLayout
 from PyQt5.QtCore import Qt
 from classes.Course import *
-from jsonCRUD.jsonCRUD import *
-from databaseCRUD.databaseCRUD import *
+from crud.jsonCRUD import *
+from crud.databaseCRUD import *
 from shared import courses, students, instructors
 
 class AddCourseTab(QWidget):

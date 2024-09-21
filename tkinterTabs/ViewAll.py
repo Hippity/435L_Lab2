@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import csv
 from classes.Course import *
-from jsonCRUD.jsonCRUD import *
+from  crud.jsonCRUD import *
 import shared
 from shared import courses,instructors,students
 import importlib

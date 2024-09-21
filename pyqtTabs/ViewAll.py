@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, QMessageBox, QFileDialog
 import csv
 from classes.Student import *
-from jsonCRUD.jsonCRUD import *
-from databaseCRUD.databaseCRUD import *
+from crud.jsonCRUD import *
+from crud.databaseCRUD import *
 import shared
 from shared import courses,instructors,students
 import importlib

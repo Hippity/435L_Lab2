@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tkinter App Tabs &mdash; School Management System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Shared" href="shared.html" />
+    <link rel="prev" title="Tkinter App" href="appTkinter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            School Management System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">EECE435L Lab Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crud.html">Create, Read, Update, Delete Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appPYQT.html">PYQT App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyqtTabs.html">PYQT App Tabs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appTkinter.html">Tkinter App</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tkinter App Tabs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tabs">Tabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs.AssignInstructor">AssignInstructor Tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tkinterTabs.AssignInstructor.AssignInstructorTab"><code class="docutils literal notranslate"><span class="pre">AssignInstructorTab</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs.CourseTab">Course Tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tkinterTabs.CourseTab.AddCourseTab"><code class="docutils literal notranslate"><span class="pre">AddCourseTab</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs.InstructorTab">Instructor Tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tkinterTabs.InstructorTab.AddInstructorTab"><code class="docutils literal notranslate"><span class="pre">AddInstructorTab</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs.RegisterCourse">RegisterCourse Tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tkinterTabs.RegisterCourse.RegisterCourseTab"><code class="docutils literal notranslate"><span class="pre">RegisterCourseTab</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs.StudentTab">Student Tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tkinterTabs.StudentTab.AddStudentTab"><code class="docutils literal notranslate"><span class="pre">AddStudentTab</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs.ViewAll">ViewAll Tab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tkinterTabs.ViewAll.ViewAllTab"><code class="docutils literal notranslate"><span class="pre">ViewAllTab</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tkinterTabs">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shared.html">Shared</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">School Management System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">EECE435L Lab Documentation</a></li>
+      <li class="breadcrumb-item active">Tkinter App Tabs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tkinterTabs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tkinter-app-tabs">
+<h1>Tkinter App Tabs<a class="headerlink" href="#tkinter-app-tabs" title="Link to this heading"></a></h1>
+<section id="tabs">
+<h2>Tabs<a class="headerlink" href="#tabs" title="Link to this heading"></a></h2>
+</section>
+<section id="module-tkinterTabs.AssignInstructor">
+<span id="assigninstructor-tab"></span><h2>AssignInstructor Tab<a class="headerlink" href="#module-tkinterTabs.AssignInstructor" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tkinterTabs.AssignInstructor.</span></span><span class="sig-name descname"><span class="pre">AssignInstructorTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab.assign_instructor">
+<span class="sig-name descname"><span class="pre">assign_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab.assign_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab.assign_instructor" title="Link to this definition"></a></dt>
+<dd><p>Assigns an instructor to a course and updates the local copy</p>
+<p>Validates the assignment process and displays success or error messages
+using a messagebox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab.init_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Initializes the UI of the AssignInstructorTab. Sets up the layout and adds all the components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab.on_course_select">
+<span class="sig-name descname"><span class="pre">on_course_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab.on_course_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab.on_course_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the course_var attribute with the selected course_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab.on_instructor_select">
+<span class="sig-name descname"><span class="pre">on_instructor_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab.on_instructor_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab.on_instructor_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the instructor_var attribute with the selected course_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab.unassign_instructor">
+<span class="sig-name descname"><span class="pre">unassign_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab.unassign_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab.unassign_instructor" title="Link to this definition"></a></dt>
+<dd><p>Unassigns an instructor to a course and updates the local copy</p>
+<p>Validates the unassignment process and displays success or error messages
+using a messagebox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.AssignInstructor.AssignInstructorTab.update_ui">
+<span class="sig-name descname"><span class="pre">update_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/AssignInstructor.html#AssignInstructorTab.update_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.AssignInstructor.AssignInstructorTab.update_ui" title="Link to this definition"></a></dt>
+<dd><p>Updates the UI for the course and instructor dropdown to reflect new data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tkinterTabs.CourseTab">
+<span id="course-tab"></span><h2>Course Tab<a class="headerlink" href="#module-tkinterTabs.CourseTab" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tkinterTabs.CourseTab.</span></span><span class="sig-name descname"><span class="pre">AddCourseTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab.create_course">
+<span class="sig-name descname"><span class="pre">create_course</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab.create_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab.create_course" title="Link to this definition"></a></dt>
+<dd><p>Adds a course to the db and updates local copy</p>
+<p>Validates the create process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab.delete_course">
+<span class="sig-name descname"><span class="pre">delete_course</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab.delete_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab.delete_course" title="Link to this definition"></a></dt>
+<dd><p>Deletes a course from the db and updates local copy</p>
+<p>Validates the delete process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab.edit_course">
+<span class="sig-name descname"><span class="pre">edit_course</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab.edit_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab.edit_course" title="Link to this definition"></a></dt>
+<dd><p>Updates a course in the db and updates local copy</p>
+<p>Validates the edit process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab.init_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Initializes the UI of the AddCourseTab. Sets up the layout and adds all the components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab.on_select">
+<span class="sig-name descname"><span class="pre">on_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab.on_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab.on_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the course_var attribute with the selected course_id and input labels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.CourseTab.AddCourseTab.update_ui">
+<span class="sig-name descname"><span class="pre">update_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/CourseTab.html#AddCourseTab.update_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.CourseTab.AddCourseTab.update_ui" title="Link to this definition"></a></dt>
+<dd><p>Updated the UI for the course dropdown to relfect new data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tkinterTabs.InstructorTab">
+<span id="instructor-tab"></span><h2>Instructor Tab<a class="headerlink" href="#module-tkinterTabs.InstructorTab" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tkinterTabs.InstructorTab.</span></span><span class="sig-name descname"><span class="pre">AddInstructorTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab.create_instructor">
+<span class="sig-name descname"><span class="pre">create_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab.create_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab.create_instructor" title="Link to this definition"></a></dt>
+<dd><p>Adds an instructor to the db and updates local copy</p>
+<p>Validates the create process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab.delete_instructor">
+<span class="sig-name descname"><span class="pre">delete_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab.delete_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab.delete_instructor" title="Link to this definition"></a></dt>
+<dd><p>Deletes an instructor from the db and updates local copy</p>
+<p>Validates the delete process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab.edit_instructor">
+<span class="sig-name descname"><span class="pre">edit_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab.edit_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab.edit_instructor" title="Link to this definition"></a></dt>
+<dd><p>Updates an instructor in the db and updates local copy</p>
+<p>Validates the edit process and displays success or error messages
+using a QMessageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab.init_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Initializes the UI of the AddInstructorTab. Sets up the layout and adds all the components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab.on_select">
+<span class="sig-name descname"><span class="pre">on_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab.on_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab.on_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the instructor_var attribute with the selected instructor_id and input labels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.InstructorTab.AddInstructorTab.update_ui">
+<span class="sig-name descname"><span class="pre">update_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/InstructorTab.html#AddInstructorTab.update_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.InstructorTab.AddInstructorTab.update_ui" title="Link to this definition"></a></dt>
+<dd><p>Updated the UI for the instructor dropdown to relfect new data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tkinterTabs.RegisterCourse">
+<span id="registercourse-tab"></span><h2>RegisterCourse Tab<a class="headerlink" href="#module-tkinterTabs.RegisterCourse" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tkinterTabs.RegisterCourse.</span></span><span class="sig-name descname"><span class="pre">RegisterCourseTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab.assign_student">
+<span class="sig-name descname"><span class="pre">assign_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab.assign_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab.assign_student" title="Link to this definition"></a></dt>
+<dd><p>Registers a student to a course in the db and updates the local copy</p>
+<p>Validates the registration process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab.init_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Initializes the UI of the RegisterCourseTab. Sets up the layout and adds all the components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab.on_course_select">
+<span class="sig-name descname"><span class="pre">on_course_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab.on_course_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab.on_course_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the course_var attribute with the selected course_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab.on_student_select">
+<span class="sig-name descname"><span class="pre">on_student_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab.on_student_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab.on_student_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the student_var attribute with the selected student_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab.unassign_student">
+<span class="sig-name descname"><span class="pre">unassign_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab.unassign_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab.unassign_student" title="Link to this definition"></a></dt>
+<dd><p>Unregisters a student to a course in the db and updates the local copy</p>
+<p>Validates the unregistration process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.RegisterCourse.RegisterCourseTab.update_ui">
+<span class="sig-name descname"><span class="pre">update_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/RegisterCourse.html#RegisterCourseTab.update_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.RegisterCourse.RegisterCourseTab.update_ui" title="Link to this definition"></a></dt>
+<dd><p>Updates the UI for the course and student dropdown to reflect the new data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tkinterTabs.StudentTab">
+<span id="student-tab"></span><h2>Student Tab<a class="headerlink" href="#module-tkinterTabs.StudentTab" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tkinterTabs.StudentTab.</span></span><span class="sig-name descname"><span class="pre">AddStudentTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab.create_student">
+<span class="sig-name descname"><span class="pre">create_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab.create_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab.create_student" title="Link to this definition"></a></dt>
+<dd><p>Adds a student to the db and updates local copy</p>
+<p>Validates the create process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab.delete_student">
+<span class="sig-name descname"><span class="pre">delete_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab.delete_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab.delete_student" title="Link to this definition"></a></dt>
+<dd><p>Deletes a student from the db and updates local copy</p>
+<p>Validates the delete process and displays success or error messages
+using a messageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab.edit_student">
+<span class="sig-name descname"><span class="pre">edit_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab.edit_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab.edit_student" title="Link to this definition"></a></dt>
+<dd><p>Updates a student in the db and updates local copy</p>
+<p>Validates the edit process and displays success or error messages
+using a QMessageBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab.init_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Initializes the UI of the AddStudentTab. Sets up the layout and adds all the components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab.on_select">
+<span class="sig-name descname"><span class="pre">on_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab.on_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab.on_select" title="Link to this definition"></a></dt>
+<dd><p>Updates the student_var attribute with the selected student_id and input labels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.StudentTab.AddStudentTab.update_ui">
+<span class="sig-name descname"><span class="pre">update_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/StudentTab.html#AddStudentTab.update_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.StudentTab.AddStudentTab.update_ui" title="Link to this definition"></a></dt>
+<dd><p>Updated the UI for the instructor dropdown to relfect new data</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tkinterTabs.ViewAll">
+<span id="viewall-tab"></span><h2>ViewAll Tab<a class="headerlink" href="#module-tkinterTabs.ViewAll" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tkinterTabs.ViewAll.</span></span><span class="sig-name descname"><span class="pre">ViewAllTab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.export_csv">
+<span class="sig-name descname"><span class="pre">export_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.export_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.export_csv" title="Link to this definition"></a></dt>
+<dd><p>Exports the current table data to a CSV file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.fix_course_data">
+<span class="sig-name descname"><span class="pre">fix_course_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.fix_course_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.fix_course_data" title="Link to this definition"></a></dt>
+<dd><p>Formats the course data to be compatible with the table widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples containing formatted course data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.fix_instructor_data">
+<span class="sig-name descname"><span class="pre">fix_instructor_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.fix_instructor_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.fix_instructor_data" title="Link to this definition"></a></dt>
+<dd><p>Formats the instructor data to be compatible with the table widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples containing formatted instructor data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.fix_student_data">
+<span class="sig-name descname"><span class="pre">fix_student_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.fix_student_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.fix_student_data" title="Link to this definition"></a></dt>
+<dd><p>Formats the student data to be compatible with the table widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples containing formatted student data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.init_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Initializes the UI of the ViewAllTab. Sets up the layout and adds all the components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.refresh_data_tree">
+<span class="sig-name descname"><span class="pre">refresh_data_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.refresh_data_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.refresh_data_tree" title="Link to this definition"></a></dt>
+<dd><p>Reloads the data from the shared.py and refreshes the table data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.search_data">
+<span class="sig-name descname"><span class="pre">search_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">treeview</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.search_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.search_data" title="Link to this definition"></a></dt>
+<dd><p>Filters the data in the current table based on the search query entered by the user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.show_courses">
+<span class="sig-name descname"><span class="pre">show_courses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.show_courses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.show_courses" title="Link to this definition"></a></dt>
+<dd><p>Displays the course data in the table widget with appropriate headers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.show_instructors">
+<span class="sig-name descname"><span class="pre">show_instructors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.show_instructors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.show_instructors" title="Link to this definition"></a></dt>
+<dd><p>Displays the instructor data in the table widget with appropriate headers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.show_students">
+<span class="sig-name descname"><span class="pre">show_students</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.show_students"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.show_students" title="Link to this definition"></a></dt>
+<dd><p>Displays the student data in the table widget with appropriate headers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.update_tree_data">
+<span class="sig-name descname"><span class="pre">update_tree_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.update_tree_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.update_tree_data" title="Link to this definition"></a></dt>
+<dd><p>Updates the table widget data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – List of row data to display in the table widget.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tkinterTabs.ViewAll.ViewAllTab.update_tree_headers">
+<span class="sig-name descname"><span class="pre">update_tree_headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">headers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tkinterTabs/ViewAll.html#ViewAllTab.update_tree_headers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tkinterTabs.ViewAll.ViewAllTab.update_tree_headers" title="Link to this definition"></a></dt>
+<dd><p>Updates the headers of the table widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>headers</strong> (<em>list</em>) – List of headers to set in the table widget.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tkinterTabs">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tkinterTabs" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="appTkinter.html" class="btn btn-neutral float-left" title="Tkinter App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shared.html" class="btn btn-neutral float-right" title="Shared" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Zein Zebib.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
