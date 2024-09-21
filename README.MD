@@ -47,7 +47,6 @@ python appPYQT.py
 ```bash
 python3 appTkinter.py
 ```
-#### For macOS
 ```bash
 python3 appPYQT.py
 ```
